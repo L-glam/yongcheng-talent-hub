@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>永城市四套班子人才库</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">永</div>
+        <div>
+          <h1>永城市四套班子人才库</h1>
+          <p id="metaLine" class="meta-line"></p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="importBtn" class="btn" type="button" title="导入 CSV 数据">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <span>导入 CSV</span>
+        </button>
+        <button id="exportBtn" class="btn" type="button" title="导出当前数据为 CSV">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <span>导出 CSV</span>
+        </button>
+        <button id="resetBtn" class="btn ghost" type="button" title="恢复内置默认数据">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
+          <span>恢复默认</span>
+        </button>
+        <input id="csvInput" type="file" accept=".csv,text/csv" hidden>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="toolbar" aria-label="筛选与检索">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="searchInput" type="search" placeholder="姓名、职务、籍贯、经历" autocomplete="off">
+      </div>
+
+      <div class="segmented" id="teamFilter" role="group" aria-label="按班子筛选">
+        <button class="seg active" data-team="全部" type="button">全部</button>
+        <button class="seg" data-team="市委" type="button">市委</button>
+        <button class="seg" data-team="市政府" type="button">市政府</button>
+        <button class="seg" data-team="市人大常委会" type="button">市人大</button>
+        <button class="seg" data-team="市政协" type="button">市政协</button>
+      </div>
+
+      <div class="select-wrap">
+        <label class="visually-hidden" for="typeFilter">职务类型</label>
+        <select id="typeFilter">
+          <option value="全部">全部职务</option>
+          <option value="正职">正职</option>
+          <option value="副职">副职</option>
+          <option value="其他">常委/秘书长等</option>
+        </select>
+      </div>
+
+      <div class="select-wrap">
+        <label class="visually-hidden" for="sortSelect">排序方式</label>
+        <select id="sortSelect">
+          <option value="default">默认排序</option>
+          <option value="birth">按出生年月</option>
+          <option value="name">按姓名</option>
+          <option value="career">按经历完整度</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="stats" id="stats" aria-label="统计概览"></section>
+
+    <section class="cards" id="cards" aria-label="人才名单"></section>
+    <p id="emptyState" class="empty-state" hidden>没有符合条件的记录</p>
+  </main>
+
+  <dialog id="detail" class="detail-dialog">
+    <div class="detail-panel">
+      <button id="closeDetail" class="icon-btn" type="button" title="关闭">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div id="detailBody"></div>
+    </div>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
